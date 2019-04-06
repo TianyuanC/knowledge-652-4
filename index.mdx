@@ -15,7 +15,9 @@ export { future as theme } from "mdx-deck/themes";
 
 ## Web Components
 
--   [Introduction](https://www.dannymoerkerke.com/blog/web-components-will-replace-your-frontend-framework)
+-   Shadow DOM
+-   [doc](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+-   [source](https://www.dannymoerkerke.com/blog/web-components-will-replace-your-frontend-framework)
 -   Applications
     -   [Material](https://dannymoerkerke.github.io/material-webcomponents)
     -   [UI5](https://sap.github.io/ui5-webcomponents/)
@@ -32,6 +34,34 @@ export { future as theme } from "mdx-deck/themes";
 
 -   [Doc](http://extension.remotedev.io/#13-use-redux-devtools-extension-package-from-npm)
 -   [Tetris Demo](https://chvin.github.io/react-tetris/?lan=en)
+
+---
+
+import { CodeSurfer } from "mdx-deck-code-surfer";
+
+<CodeSurfer
+    title="Redux DevTools"
+    code={require("!raw-loader!./code/redux_devtool.js")}
+    lang="javascript"
+    dark={false}
+    steps={[
+        { notes: "redux devtool setup" },
+        {
+            lines: [2],
+            notes: "npm install --save-dev redux-devtools-extension"
+        },
+        { lines: [6], notes: "composer" },
+        { lines: [7], notes: "enhancer" }
+    ]}
+/>
+
+---
+
+## Dev Tip:
+
+`Console.log()`
+
+[source](https://areknawo.com/getting-creative-with-the-console-api/)
 
 ---
 
