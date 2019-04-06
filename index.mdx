@@ -65,7 +65,7 @@ import { CodeSurfer } from "mdx-deck-code-surfer";
 
 ---
 
-![devTool](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/graphql.png)
+![graphQL](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/graphql_1.png)
 
 ---
 
@@ -77,7 +77,7 @@ import { CodeSurfer } from "mdx-deck-code-surfer";
 
 ---
 
-![devTool](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/webpack.png)
+![webpack](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/webpack_1.png)
 
 ---
 
@@ -167,21 +167,40 @@ const tasks = [[task1, task2], task3];
 
 const execute = () => {
     Promise.all(
-        tasks.map(task => {
-            if (Array.isArray(task)) {
-                return task.reduce(
-                    (acc, currTask) => acc.then(() => currTask()),
-                    Promise.resolve()
-                );
-            } else {
-                return task();
-            }
-        })
+        tasks.map(task =>
+            Array.isArray(task)
+                ? task.reduce(
+                      (acc, currTask) => acc.then(() => currTask()),
+                      Promise.resolve()
+                  )
+                : task()
+        )
     );
 };
 
 execute();
 ```
+
+---
+
+<CodeSurfer
+    title="Promise: Mixing"
+    code={require("!raw-loader!./code/promise_mix.js")}
+    lang="javascript"
+    dark={false}
+    steps={[
+        { notes: "promise mixing" },
+        {
+            lines: [2],
+            notes: "batching"
+        },
+        {
+            lines: [3, 8],
+            notes: "If it's task, execute, otherwise, apply sequential rules"
+        },
+        { range: [4, 7], notes: "sequential" }
+    ]}
+/>
 
 ---
 
