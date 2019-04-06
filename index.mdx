@@ -65,19 +65,123 @@ import { CodeSurfer } from "mdx-deck-code-surfer";
 
 ---
 
-## GraphQL
+![devTool](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/graphql.png)
 
 ---
 
-## Webpack Loaders
+## Graphql
+
+-   Why?
+-   REST vs GraphQL
+-   Demo
 
 ---
+
+![devTool](https://raw.githubusercontent.com/TianyuanC/knowledge-652-4/master/img/webpack.png)
+
+---
+
+## Webpack
+
+-   Why
+-   Loader
+-   react with Webpack
+
+---
+
+import Code from "mdx-code";
 
 ## ES6 Challendge
 
 -   Promise batching
 -   Promise sequential
 -   Mixings
+
+---
+
+export default Code;
+
+```javascript Promise: Batching
+const delay = (t, name) => () =>
+    new Promise(resolve => {
+        setTimeout(() => {
+            console.log(`done: task ${name}`);
+            resolve();
+        }, t);
+    });
+const task1 = delay(1000, "one");
+const task2 = delay(500, "two");
+const task3 = delay(600, "three");
+const tasks = [task1, task2, task3];
+
+const execute = () => {
+    Promise.all(tasks.map(task => task()));
+};
+
+execute();
+```
+
+---
+
+export default Code;
+
+```javascript Promise: Sequentail
+const delay = (t, name) => () =>
+    new Promise(resolve => {
+        setTimeout(() => {
+            console.log(`done: task ${name}`);
+            resolve();
+        }, t);
+    });
+const task1 = delay(1000, "one");
+const task2 = delay(500, "two");
+const task3 = delay(600, "three");
+const tasks = [task1, task2, task3];
+
+const execute = () => {
+    tasks.reduce(
+        (acc, currTask) => acc.then(() => currTask()),
+        Promise.resolve()
+    );
+};
+
+execute();
+```
+
+---
+
+export default Code;
+
+```javascript Promise: Mixing 🤯
+const delay = (t, name) => () =>
+    new Promise(resolve => {
+        setTimeout(() => {
+            console.log(`done: task ${name}`);
+            resolve();
+        }, t);
+    });
+const task1 = delay(1000, "one");
+const task2 = delay(500, "two");
+const task3 = delay(600, "three");
+const tasks = [[task1, task2], task3];
+
+const execute = () => {
+    Promise.all(
+        tasks.map(task => {
+            if (Array.isArray(task)) {
+                return task.reduce(
+                    (acc, currTask) => acc.then(() => currTask()),
+                    Promise.resolve()
+                );
+            } else {
+                return task();
+            }
+        })
+    );
+};
+
+execute();
+```
 
 ---
 
